@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title> CNIT 133 Homework 3 Part 2: Sale Numbers </title>
+    <meta name="description" content="Gia Vu Profile">
+    <meta name="viewport" content="width= device-width, initial-scalable=1">
+    <meta name="author" content="Gia Vu">
+    <meta name="keywords" content="Javascript,CNIT 133,Homework 3 Part 1,Student, Grades, website,HTML,CSS">
+
+    <link href="https://fonts.googleapis.com/css?family=Alegreya" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- jQuery UI  -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!-- Javascript -->
+    <script>
+
+        function process() {
+            //declare all variables:
+            var numItem1Str, numItem2Str, numItem3Str, numItem4Str;
+            var numItem1, numItem2, numItem3, numItem4, finalTotal;
+            var totalItem1, totalItem2, totalItem3, totalItem4;
+            // Store all the value that user enter:
+            numItem1Str = document.getElementById('num_item1').value;
+            numItem2Str = document.getElementById('num_item2').value;
+            numItem3Str = document.getElementById('num_item3').value;
+            numItem4Str = document.getElementById('num_item4').value;
+
+            numItem1 = parseInt(numItem1Str,10);
+            numItem2 = parseInt(numItem2Str,10);
+            numItem3 = parseInt(numItem3Str,10);
+            numItem4 = parseInt(numItem4Str,10);
+
+            totalItem1 = numItem1 * 239.99;
+            totalItem2 = numItem2 * 129.79;
+            totalItem3 = numItem3 * 99.95;
+            totalItem4 = numItem4 * 350.89;
+
+            finalTotal = totalItem1 + totalItem2 + totalItem3 + totalItem4;
+
+            // If value entered is not a number or smaller than 0, or a space, then display error message
+            if (isNaN(numItem1Str) || isNaN(numItem2Str) || isNaN(numItem3Str) || isNaN(numItem4Str) ||
+                numItem1Str==""||numItem2Str==""||numItem3Str==""||numItem4Str==""||
+                numItem1 < 0 || numItem2 < 0 || numItem3 < 0 || numItem4 < 0 ||
+                numItem1 > Number.MAX_VALUE || numItem2 > Number.MAX_VALUE || numItem3 > Number.MAX_VALUE || numItem4 > Number.MAX_VALUE ||
+                totalItem1 > Number.MAX_VALUE||totalItem2 > Number.MAX_VALUE || totalItem3 > Number.MAX_VALUE || totalItem4 >Number.MAX_VALUE ||
+                finalTotal > Number.MAX_VALUE) {
+                document.getElementById('errorInputAlert').innerHTML = "All values and calculated values must be numbers and not be less than 0" +
+                    " and not greater than 1.79 <sup>308</sup>";
+            }else{
+                //Transfer the input number if Valid.
+                document.getElementById('intItem1').innerHTML=numItem1.toString();
+                document.getElementById('intItem2').innerHTML=numItem2.toString();
+                document.getElementById('intItem3').innerHTML=numItem3.toString();
+                document.getElementById('intItem4').innerHTML=numItem4.toString();
+
+                //Use to Fixed to convert to 2 fixed decimal places:
+                var totalItem1R = totalItem1.toFixed(2);
+                var totalItem2R = totalItem2.toFixed(2);
+                var totalItem3R = totalItem3.toFixed(2);
+                var totalItem4R = totalItem4.toFixed(2);
+                var finalTotalR = finalTotal.toFixed(2);
+
+                var salaryFl = 200 + 0.09 * finalTotal;
+                salaryFl=salaryFl.toFixed(2);
+
+                //display the amount showed with the $ sign added in front:
+                document.getElementById('total_item1').innerHTML = "$"+totalItem1R;
+                document.getElementById('total_item2').innerHTML = "$"+totalItem2R;
+                document.getElementById('total_item3').innerHTML = "$"+totalItem3R;
+                document.getElementById('total_item4').innerHTML = "$"+totalItem4R;
+
+                //display the total Amount sold:
+                document.getElementById('final_total').innerHTML = "$"+finalTotalR;
+                document.getElementById('salary').innerHTML="$"+ salaryFl;
+
+
+
+
+
+
+            }
+        }
+
+    </script>
+
+
+    <script>
+
+        //prevent jQuery code from running before the document is ready:
+        $(document).ready(function(){
+
+            $("#flip").click(function(){
+                $("#panel").slideToggle("slow");
+            });
+            $("#input_name").tooltip();
+        });
+
+
+    </script>
+
+
+</head>
+
+<body>
+
+
+
+<section class="body">
+
+    <br>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+
+
+            <a class="navbar-brand" href="hw1.html">HW1</a>
+            <a class="navbar-brand" href="hw2.html">HW2</a>
+            <a class="navbar-brand" href="hw3.html">HW3</a>
+            <a class="navbar-brand" href="hw4.html">HW4</a>
+            <a class="navbar-brand" href="hw5.html">HW5</a>
+
+            <a class="navbar-brand" href="hw6.html">HW6</a>
+            <a class="navbar-brand" href="hw7.html">HW7</a>
+
+            <a class="navbar-brand" href="hw8.html">HW8</a>
+
+        </div>
+    </nav>
+
+
+    <div style=" width: 60%; display:block;margin-left:auto;margin-right:auto;">
+
+
+        <div class="center" id="flip">Click to slide the panel down or up</div>
+        <div onload="document.getElementById('num_item1').focus();" id="panel"><h2 class="center">Sales Number</h2>
+            <br/>
+
+
+            <form id="myform" name="myform">
+                Salesperson: <input title="Please make sure that the salesperson's name is spelled correctly" id="input_name" type="text" name="sp" size="20"><br/><br/>
+
+                <h3 class="center">Input the number of items sold for each item number:</h3>
+
+                Item 1: <input class="number" type="text" id="num_item1" size="8"><br>
+                Item 2: <input class="number" type="text" id="num_item2" size="8"><br>
+                Item 3: <input class="number" type="text" id="num_item3" size="8"><br>
+                Item 4: <input class="number" type="text" id="num_item4" size="8"><br><br>
+                <input type="button" onclick="process()" value="Submit">
+                <input type="reset" value="RESET"
+                       onclick="location.reload();">
+                <br/>
+                <br/>
+
+                <table class="center" border="1">
+                    <tr class="head"><th>Item #</th><th>Price</th><th class="center">Number Sold</th><th style="width:200px;text-align:center;" >Total</th></tr>
+
+                    <tr><td>1</td><td>$239.99</td><td class="right" id="intItem1"></td><td class="right" id="total_item1"></td></tr>
+                    <tr><td>2</td><td>$129.75</td><td class="right" id="intItem2"></td><td class="right" id="total_item2"></td></tr>
+                    <tr><td>3</td><td>$99.95</td><td class="right" id="intItem3"></td><td class="right" id="total_item3"></td></tr>
+                    <tr><td>4</td><td>$350.89</td><td class="right" id="intItem4"></td><td class="right" id="total_item4"></td></tr>
+                    <tr><td class="important_green" colspan="3">Total Amount Sold:</td><td class="right" id="final_total"></td></tr>
+                    <tr><td class="important_red" colspan="3">Total Weekly Earnings:</td><td class="right" id="salary"></td></tr>
+                </table>
+
+                <br/><br/>
+                <p class="center" id="errorInputAlert"></p>
+
+            </form>
+
+        </div>
+
+
+        <br/>
+
+        <footer class='center'>
+
+            <p>
+
+
+                <script type="text/javascript">
+                    var dateModified = document.lastModified;
+                    mydate = dateModified.slice(0, 16);
+                    document.write("Last updated: " + mydate);
+                </script>
+                <br>
+                <a href="https://validator.w3.org/check?uri=referer">
+                    <img style="border:0;width:31px;height:31px" src="https://www.w3.org/html/logo/downloads/HTML5_Logo_64.png" alt="HTML5"></a>
+
+                <a href="https://jigsaw.w3.org/css-validator/check/referer">
+                    <img style="border:0;width:88px;height:31px"
+                         src="http://jigsaw.w3.org/css-validator/images/vcss"
+                         alt="Valid CSS!">
+                </a>
+            </p>
+
+
+        </footer>
+
+    </div>
+</section>
+</body>
