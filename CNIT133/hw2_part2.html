@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang= "en-US">
+<head>
+    <meta charset = "UTF-8">
+    <title> CNIT 133 Homework 2 Part 2 </title>
+    <meta name = "description" content= "Gia Vu Profile">
+    <meta name ="viewport" content = "width= device-width, initial-scalable=1">
+    <meta name = "author" content = "Gia Vu">
+    <meta name = "keywords" content = "Javascript,CNIT 133,Homework 2 Part 2, website,HTML,CSS">
+    
+    <link href="https://fonts.googleapis.com/css?family=Alegreya" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    <!-- Javascript using document.write -->
+    <script> 
+            // Make a function called process()
+            // This function will process the numbers input by users. 
+            function process()
+            {
+            //declare the variables
+            var number1, number2, n1, n2, n3, sum;
+            //retrieve the variable from the form
+            number1 = document.forms["hw2form2"].elements["num1"].value;
+            number2 = document.forms["hw2form2"].elements["num2"].value;
+            number3 = document.forms["hw2form2"].elements["num3"].value;
+            //since the data retrieve is string
+            //use parsetInt to convert to Int (interger)
+            n1 = parseInt(number1);
+            n2 = parseInt(number2);
+            n3 = parseInt(number3);
+
+            sum = n1 + n2 + n3; 
+
+            average = sum / 3;
+                
+            product = n1 * n2 * n3;
+            //Use math object to determine min and max:    
+            min = Math.min(n1,n2,n3);
+            max = Math.max(n2,n2,n3);
+            
+            //declare a display result to print out the concatenate string in the alert window:
+            let displayResult = "Sum = " + sum + "\n" + 
+                                "Average = " + average + "\n" +
+                                "Product = " + product + "\n" +
+                                "Smallest = " + min + "\n" +
+                                "Largest = " + max + "\n" ;
+                
+                alert(displayResult);
+            }
+        </script>
+</head>
+<body>
+    <section class="body">
+
+<br>
+
+<nav class="navbar navbar-default" role="navigation">
+   <div class="navbar-header">
+
+
+      <a class="navbar-brand" href="hw1.html">HW1</a>
+      <a class="navbar-brand" href="hw2.html">HW2</a>
+      <a class="navbar-brand" href="hw3.html">HW3</a>
+      <a class="navbar-brand" href="hw4.html">HW4</a>
+      <a class="navbar-brand" href="hw5.html">HW5</a>
+
+      <a class="navbar-brand" href="hw6.html">HW6</a>
+      <a class="navbar-brand" href="hw7.html">HW7</a>
+
+      <a class="navbar-brand" href="hw8.html">HW8</a>
+
+</div>
+</nav>
+       <section>
+        <h1>Input Intergers on forms </h1>
+           
+           <p style="width:90%;display:block;margin:auto;">
+            Please input 3 integers via form text boxes. Then click the <strong>SUBMIT</strong> button to display the sum, average, product of the three numbers as well as the smallest and the largest number.</p>
+           <br/>
+           <div style=" width: 30%; display:block;margin-left:auto;margin-right:auto;">
+           <form name="hw2form2">
+            <table>
+            <tr>
+            <td>First Number:</td>
+            <td><input type="text" name="num1" size="10"></td>
+            </tr>
+
+            <tr>
+            <td>Second Number:</td>
+            <td><input type="text" name="num2" size="10"></td>
+            </tr>
+
+            <tr>
+            <td>Thid Number:</td>
+            <td><input type="text" name="num3" size="10"></td>
+            </tr>
+
+            </table>
+<br>
+<input type="button" onclick="process()" value="SUBMIT">
+<input type="reset" value="RESET">
+</form>
+        
+           </div>
+        
+        </section>
+
+        <br/>
+        
+<footer>
+
+<p>
+
+
+<script type="text/javascript">
+var dateModified = document.lastModified;
+mydate = dateModified.slice(0,16);
+document.write("Last updated: " + mydate);
+</script>
+<br>
+<a href="https://validator.w3.org/check?uri=referer">
+<img style="border:0;width:31px;height:31px" src="https://www.w3.org/html/logo/downloads/HTML5_Logo_64.png"
+alt="HTML5"></a>
+
+    <a href="https://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px"
+            src="http://jigsaw.w3.org/css-validator/images/vcss"
+            alt="Valid CSS!">
+    </a>
+</p>
+
+
+</footer>
+
+
+</section>
+</body>    
