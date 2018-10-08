@@ -1,0 +1,115 @@
+
+body{
+    background-color:#d2eae2 !important;
+}
+.body  { width: 900px;
+    margin: 0 auto;
+    text-align: left;
+    background-color:#f9f6f1;
+}
+/* on user's hover over a link, change color to black, give underline, give background color of orange */
+h1{
+    text-align:center;
+}
+.left{
+    text-align:left;
+}
+
+.center{
+    text-align:center;
+    margin:auto;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.right{
+    text-align:right;
+}
+a:hover {color: #000000; text-decoration: underline; background-color: orange;}
+/*  For main HW Assignment table header, embellish with background:white, font size, and color:blue */
+
+tr.head {background-color: #1d5dae!important; font-size: 12pt; color: white;}
+tr.important {background-color:#36ac84;
+    font-family:"Alegreya",serif;
+    font-size: 20px;}
+
+
+/* Striped table */
+tr:nth-child(odd) {
+    background-color: #f2ebeb;
+}
+
+/*  For main HW Assignment table footer, embellish with background, font size, and color */
+
+td.foot {background-color: #b25076/*blue*/; font-size: 14pt; color: white; text-align: center;}
+td.important_green{background-color:#36ac84;/*green*/
+    font-family:"Alegreya",serif;
+    font-size: 16px;color:white;text-align:center;}
+td.important_red{background-color: #b25076/*red*/;font-family:"Alegreya",serif;
+    font-size: 16pt; color: white; text-align: center;}
+tr.beige {background-color: #f5f5dc;} /* beige */
+
+th { font-family: 'Alegreya', serif; font-size: 24px; text-align: center;}
+td.right{
+    text-align:right;
+    padding-right:15px;
+}
+
+img.center{
+    display: block;
+    margin: 0 auto;
+}
+footer {margin-left: 300px; width: 600px;}
+
+.navbar-header {margin-left: 105px;}
+#flip{
+    padding: 5px;
+    background-color: #91d38e;
+    border: solid 1px #c3c3c3;
+}
+div.center{
+    margin:auto;
+}
+table{
+    border-collapse: separate; border-spacing:1px;}
+table.center{
+    margin:auto;
+}
+#panel{
+    background-color: #ebfcbc;
+    border: solid 1px #c3c3c3;
+    display:none;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 5px;
+}
+footer{
+    text-align:center;
+    display:block;
+    margin:auto;
+    padding: 25px;
+}
+input.right{
+    width:100%;
+}
+input.number{
+    text-align: right;
+}
+#errorInputAlert{
+    background-color:#CD5C5C; /* red color for alert background */
+    color:white;
+    font-family:"Alegreya",serif;
+    font-size: 16pt;
+}
+.notes_red{
+    background-color: #CD5C5C;
+    margin-left:5em;
+    margin-right:5em;
+    font-size:20px;
+    font-weight: bold;
+    text-align:center;
+}
+.error { font: normal 14px arial;
+    padding: 3px; margin: 3px;
+    color: white; background-color: indianred;
+}
