@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title> CNIT 133 Homework 3 Part 3: Credit Account Summary </title>
+    <meta name="description" content="Gia Vu Profile">
+    <meta name="viewport" content="width= device-width, initial-scalable=1">
+    <meta name="author" content="Gia Vu">
+    <meta name="keywords" content="Javascript,CNIT 133,Homework 3 Part 3,Credit Account, website,HTML,CSS">
+
+    <link href="https://fonts.googleapis.com/css?family=Alegreya" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- jQuery UI  -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <!-- Script to validate number input -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!-- Javascript -->
+
+
+    <script>
+
+        //prevent jQuery code from running before the document is ready:
+        $(document).ready(function(){
+
+            $("#flip").click(function(){
+                $("#panel").slideToggle("slow");
+            });
+            //when changeColor button click, change the text.
+            $("#changeColor").click(function(){
+                $("#highlight").css({
+                    "color": "white ",
+                    "background-color": "black",
+                    "font-family": "Arial",
+                    "font-size": "20px",
+                    "font-weight":"bold",
+                    "padding": "5px"
+                });
+                $("input").css({
+                    "color": "white ",
+                    "background-color": "black",
+                    "font-family": "Arial",
+                    "font-size": "20px",
+                    "padding": "5px"
+                });
+                $("tr:nth-child(odd)").css({
+                    "background-color": "black"
+                });
+            });
+
+            /* JQuery for validation
+            displays error message if form input is not a number
+            */
+
+                $("#myform").validate({
+
+
+                    // Rules for each input item
+                    rules:
+                        {
+                            accountNum: { required: true, number: true, min: 0},
+                            creditLimitAmount: { required: true, number: true, min: 0},
+                            balanceAmount:{required: true, number: true, min: 0},
+                            chargedAmount:{required: true, number: true, min: 0},
+                            creditAmount:{required: true, number: true, min:0}
+                        },
+
+
+                    messages: {
+
+                        accountNum:  "Please enter your Account Number",
+                        creditLimitAmount: "Please enter your credit limit, must be at least 0",
+                        balanceAmount: "Balance at the beginning of the month must be at least 0",
+                        chargedAmount: "Please enter amount charged this month, must be at least 0",
+                        creditAmount: "Please enter amount credited this month, must be at least 0"
+                    },
+
+                    errorPlacement: function(error, element) {
+                        if ( element.is(":text")) {
+                            error.appendTo( element.parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    }
+
+
+                });
+            });
+            function process() {
+
+                if ($("#myform").valid()) {
+                    //declared all variables:
+                    var creditLimitStr, balanceStr,chargedAmountStr, creditAmountStr;
+                    var creditLimitNo, balanceNo, chargedAmountNo, creditAmountNo;
+                    var creditAvailable, exceedByNo;
+
+                    creditLimitStr = document.getElementById('creditLimitAmount').value;
+                    balanceStr = document.getElementById('balanceAmount').value;
+                    chargedAmountStr = document.getElementById('chargedAmount').value;
+                    creditAmountStr = document.getElementById('creditAmount').value;
+
+                    //Use parseFloat to convert the amount to floating point number:
+                    creditLimitNo = parseFloat(creditLimitStr);
+                    balanceNo = parseFloat(balanceStr);
+                    chargedAmountNo = parseFloat(chargedAmountStr);
+                    creditAmountNo = parseFloat(creditAmountStr);
+
+                    //Calculate new balance:
+                    balanceNo = balanceNo + chargedAmountNo - creditAmountNo;
+
+                    document.getElementById('summary').innerHTML = "The new balance is " + balanceNo;
+
+                    if (balanceNo <= creditLimitNo) {
+                        creditAvailable = creditLimitNo - balanceNo;
+                        document.getElementById('Note').innerHTML = "Credit available is " + creditAvailable;
+                    }else{
+                        exceedByNo = balanceNo - creditLimitNo;
+                        document.getElementById('Note').innerHTML = "Credit limit exceed by " + exceedByNo;
+                    }
+
+                }
+            }
+
+    </script>
+
+
+</head>
+
+<body>
+
+
+
+<section class="body">
+
+    <br>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+
+
+            <a class="navbar-brand" href="hw1.html">HW1</a>
+            <a class="navbar-brand" href="hw2.html">HW2</a>
+            <a class="navbar-brand" href="hw3.html">HW3</a>
+            <a class="navbar-brand" href="hw4.html">HW4</a>
+            <a class="navbar-brand" href="hw5.html">HW5</a>
+
+            <a class="navbar-brand" href="hw6.html">HW6</a>
+            <a class="navbar-brand" href="hw7.html">HW7</a>
+
+            <a class="navbar-brand" href="hw8.html">HW8</a>
+
+        </div>
+    </nav>
+
+
+    <div style=" width: 60%; display:block;margin-left:auto;margin-right:auto;">
+
+
+        <div class="center" id="flip">Click to slide the panel down or up</div>
+        <div onload="document.getElementById('num_item1').focus();" id="panel"><h2 class="center">Sales Number</h2>
+            <br/>
+
+
+            <form id="myform" name="myform">
+
+                <div id="highlight">
+                                <h2>Credit Account Summary</h2>
+                    <table>
+
+                        <tr>
+                            <td><label for="accountNum">Account Number:</label></td>
+                            <td><input type="number" name="accountNum" id="accountNum" size="6" ></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="creditLimitAmount"> Limit:</label></td>
+                            <td><input type="number"  name="creditLimitAmount" id="creditLimitAmount" size="6"  ></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="balanceAmount"> Balance at beginning of the month:</label></td>
+                            <td><input id="balanceAmount" name="balanceAmount" type="number" size="6" ></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="chargedAmount"> Total amount charged this month:</label></td>
+                            <td><input id="chargedAmount" name="chargedAmount" type="number" size="6" ></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="creditAmount">Total amount of credits this month:</label></td>
+                            <td><input id="creditAmount" name="creditAmount" type="number" size="6" ></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Summary:</strong></td>
+                            <td id="summary"></td>
+                        </tr>
+
+                        <tr>
+                            <td id="Note"></td>
+                        </tr>
+
+
+                    </table>
+                </div>
+
+                <br/><br/>
+                <p class="center" id="errorInputAlert"></p>
+
+            </form>
+
+            <br/>
+            <br/>
+            <input type="button" onclick="process()" value="Submit">
+            <input type="reset" value="RESET"
+                   onclick="location.reload();">
+            <button id="changeColor">Click to change Textarea Display</button>
+            <br/>
+            <br/>
+        </div>
+
+
+        <br/>
+
+        <footer class='center'>
+
+            <p>
+
+
+                <script type="text/javascript">
+                    var dateModified = document.lastModified;
+                    mydate = dateModified.slice(0, 16);
+                    document.write("Last updated: " + mydate);
+                </script>
+                <br>
+                <a href="https://validator.w3.org/check?uri=referer">
+                    <img style="border:0;width:31px;height:31px" src="https://www.w3.org/html/logo/downloads/HTML5_Logo_64.png" alt="HTML5"></a>
+
+                <a href="https://jigsaw.w3.org/css-validator/check/referer">
+                    <img style="border:0;width:88px;height:31px"
+                         src="http://jigsaw.w3.org/css-validator/images/vcss"
+                         alt="Valid CSS!">
+                </a>
+            </p>
+
+
+        </footer>
+
+    </div>
+</section>
+</body>
