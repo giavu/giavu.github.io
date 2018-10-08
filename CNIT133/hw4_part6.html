@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang= "en-US">
+<head>
+    <meta charset = "UTF-8">
+    <title> CNIT 133 Homework 4 Part 6 </title>
+    <meta name = "description" content= "Gia Vu Profile">
+    <meta name ="viewport" content = "width= device-width, initial-scalable=1">
+    <meta name = "author" content = "Gia Vu">
+    <meta name = "keywords" content = "Javascript,CNIT 133,Homework 2 Part 4, website,HTML,CSS">
+
+    <link href="https://fonts.googleapis.com/css?family=Alegreya" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+<section class="body">
+
+    <br>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+
+
+            <a class="navbar-brand" href="hw1.html">HW1</a>
+            <a class="navbar-brand" href="hw2.html">HW2</a>
+            <a class="navbar-brand" href="hw3.html">HW3</a>
+            <a class="navbar-brand" href="hw4.html">HW4</a>
+            <a class="navbar-brand" href="hw5.html">HW5</a>
+
+            <a class="navbar-brand" href="hw6.html">HW6</a>
+            <a class="navbar-brand" href="hw7.html">HW7</a>
+
+            <a class="navbar-brand" href="hw8.html">HW8</a>
+
+        </div>
+    </nav>
+
+    <section class="center">
+    <button id="animate_button">Start Animation</button>
+    <div >
+        <img  id="santa" style="margin:auto;" src="christmas.gif" alt="Two snowmen and Santa Claus in the middle" />
+    </div>
+    </section>
+
+    <div class="center">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#animate_button").click(function () {
+                    var div = $("#santa");
+                    div.animate({height: '400px', opacity: '0.4'}, "slow");
+                    div.animate({width: '600px', opacity: '0.8'}, "slow");
+                    div.animate({height: '200px', opacity: '0.4'}, "slow");
+                    div.animate({width: '300px', opacity: '0.8'}, "slow");
+                });
+            });
+        </script>
+
+
+
+
+        <script>
+
+
+            var firstLineStart = "On the ",firstLineMiddle = ""/*day number*/,
+                firstLineEnd = " day of Christmas <br/> my true love sent to me: <br/>";
+            var otherLines = "";
+
+            for (var day = 1; day <=12; day++) {
+                switch(day) {
+                    case 1:
+                        firstLineMiddle = "first";
+                        break;
+
+                    case 2:
+                        firstLineMiddle = "second";
+                        break;
+                    case 3:
+                        firstLineMiddle = "third";
+                        break;
+                    case 4:
+                        firstLineMiddle = "fourth";
+                        break;
+                    case 5:
+                        firstLineMiddle = "fifth";
+                        break;
+                    case 6:
+                        firstLineMiddle = "sixth";
+                        break;
+                    case 7:
+                        firstLineMiddle = "seventh";
+                        break;
+                    case 8:
+                        firstLineMiddle = "eighth";
+                        break;
+                    case 9:
+                        firstLineMiddle = "ninth";
+                        break;
+                    case 10:
+                        firstLineMiddle = "tenth";
+                        break;
+                    case 11:
+                        firstLineMiddle = "eleventh";
+                        break;
+                    case 12:
+                        firstLineMiddle = "twelfth";
+                        break;
+                }
+                document.write(firstLineStart + firstLineMiddle + firstLineEnd);
+                // going through switch statement with no break
+                switch(day)
+                {
+                    case 12:
+                        document.write("Twelve Drummers Drumming<br />");
+                    case 11:
+                        document.write("Eleven Pipers Piping<br />");
+                    case 10:
+                        document.write("Ten Lords a Leaping<br />");
+                    case 9:
+                        document.write("Nine Ladies Dancing<br />");
+                    case 8:
+                        document.write("Eight Maids a Milking<br />");
+                    case 7:
+                        document.write("Seven Swans a Swimming<br />");
+                    case 6:
+                        document.write("Six Geese a Laying<br />");
+                    case 5:
+                        document.write("Five Golden Rings<br />");
+                    case 4:
+                        document.write("Four Calling Birds<br />");
+                    case 3:
+                        document.write("Three French Hens<br />");
+                    case 2:
+                        document.write("Two Turtle Doves<br />");
+                    case 1:
+                        if (day!=1)
+                        document.write("and a ");
+                        document.write("Partridge in a Pear tree.<br /><br />");
+                }
+            }
+
+        </script>
+    </div>
+
+
+
+
+
+
+    <footer>
+
+
+        <script type="text/javascript">
+            var dateModified = document.lastModified;
+            mydate = dateModified.slice(0,16);
+            document.write("Last updated: " + mydate);
+        </script>
+        <br>
+        <a href="https://validator.w3.org/check?uri=referer">
+            <img style="border:0;width:31px;height:31px" src="https://www.w3.org/html/logo/downloads/HTML5_Logo_64.png"
+                 alt="HTML5"></a>
+
+        <a href="https://jigsaw.w3.org/css-validator/check/referer">
+            <img style="border:0;width:80px;height:31px"
+                 src="http://jigsaw.w3.org/css-validator/images/vcss"
+                 alt="Valid CSS!">
+        </a>
+
+
+    </footer>
+
+
+</section>
+</body>
