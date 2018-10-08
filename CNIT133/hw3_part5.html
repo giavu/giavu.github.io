@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title> CNIT 133 Homework 3 Part 5: Temperature Conversion </title>
+    <meta name="description" content="Gia Vu Profile">
+    <meta name="viewport" content="width= device-width, initial-scalable=1">
+    <meta name="author" content="Gia Vu">
+    <meta name="keywords" content="Javascript,CNIT 133,Homework 3 Part 5,Temperature,Conversion, website,HTML,CSS">
+
+    <link href="https://fonts.googleapis.com/css?family=Alegreya" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- jQuery UI  -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    <!-- Script to validate number input -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!-- Javascript -->
+
+
+    <script>
+
+        //prevent jQuery code from running before the document is ready:
+        $(document).ready(function(){
+
+            // $("#flip").click(function(){
+            //     $("#panel").slideToggle("slow");
+            // });
+
+            /* JQuery for validation
+            displays error message if form input is not a number
+            */
+
+            $("#myform").validate({
+
+
+                // Rules for each input item
+                rules:
+                    {
+                        celsiusNum: { required: true, number: true, min: -273.15, minlength: 1},
+                        fahrenheitNum: { required: true, number: true, min: -459.67, minlength: 1}
+                    },
+
+
+                messages: {
+
+                    celsiusNum:  "Please enter a temperature starting from -273.15 (Absolute Zero)",
+                    fahrenheitNum: "Please enter a temperature starting from -459.67 (Absolute Zero)"
+
+                },
+
+                errorPlacement: function(error, element) {
+                    if ( element.is(":text")) {
+                        error.appendTo( element.parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+
+            });
+        });
+
+
+
+
+
+
+        function celsius() {
+
+            if ($("#fahrenheitNum").valid()) {
+                //Read the value from div id
+                var fStr = document.getElementById('fahrenheitNum').value;
+                //parseFloat to convert to a real number to do math
+                var fValue = parseFloat(fStr);
+                //Convert to cEquivalent:
+                var cEquivalent = 5/9 * (fValue - 32);
+                // Round to 2 decimal place
+                cEquivalent = cEquivalent.toFixed(2);
+                document.getElementById('celsiusNum').value = cEquivalent;
+                document.getElementById('result').innerHTML = fStr  + " in &degF is equivalent to " +
+                        cEquivalent + " in &degC."
+            }
+        }
+
+        function fahrenheit() {
+
+            if ($("#celsiusNum").valid()) {
+                //Read the value:
+                var cStr = document.getElementById('celsiusNum').value;
+                var cValue = parseFloat(cStr);
+                var fEquivalent = (9/5 * cValue) + 32;
+                //Round fEquivalent to 2 fixed decimal places:
+                fEquivalent = fEquivalent.toFixed(2);
+                document.getElementById('fahrenheitNum').value=fEquivalent;
+                document.getElementById('result').innerHTML =  cStr  + " in &degC is equivalent to " +
+                    fEquivalent + " in &degF."
+
+
+
+
+
+
+
+
+
+            }
+        }
+
+    </script>
+
+
+</head>
+
+<body>
+
+
+
+<section class="body">
+
+    <br>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+
+
+            <a class="navbar-brand" href="hw1.html">HW1</a>
+            <a class="navbar-brand" href="hw2.html">HW2</a>
+            <a class="navbar-brand" href="hw3.html">HW3</a>
+            <a class="navbar-brand" href="hw4.html">HW4</a>
+            <a class="navbar-brand" href="hw5.html">HW5</a>
+
+            <a class="navbar-brand" href="hw6.html">HW6</a>
+            <a class="navbar-brand" href="hw7.html">HW7</a>
+
+            <a class="navbar-brand" href="hw8.html">HW8</a>
+
+        </div>
+    </nav>
+
+
+    <div style=" width: 60%; display:block;margin-left:auto;margin-right:auto;">
+
+
+        <!--<div class="center" id="flip">Click to slide the panel down or up</div>-->
+        <!--<div  id="panel"><h2 class="center">Sales Number</h2>-->
+        <br/>
+
+
+
+        <h3>Temperature Conversion Program</h3>
+        <br/>
+
+        <form id="myform" name="myform">
+            <table>
+            <tr class="head">
+                <th class="center"> Temperature</th>
+                <th class="center"> Value</th>
+            </tr>
+
+            <tr>
+                <td><label for="celsiusNum">Celsius: </label></td>
+                <td><input type="number" id="celsiusNum" name="celsiusNum" size="6" autofocus value="0"></td>
+            </tr>
+
+                <tr>
+                <td><label for="fahrenheitNum">Fahrenheit: </label></td>
+                <td><input type="number" id="fahrenheitNum" name="fahrenheitNum" size="6" value="0"></td>
+                </tr>
+
+            </table>
+        </form>
+        <br/>
+        <br/>
+        <div id="result"></div>
+        <br/>
+        <br/>
+        <input type="button" onclick="celsius()" value="To Celsius">
+        <input type="button" onclick="fahrenheit()" value="To Fahrenheit">
+        <input type="reset" value="RESET"
+               onclick="location.reload();">
+        <br/>
+        <br/>
+        <!--</div>-->
+
+
+        <br/>
+
+        <footer class='center'>
+
+            <p>
+
+
+                <script type="text/javascript">
+                    var dateModified = document.lastModified;
+                    mydate = dateModified.slice(0, 16);
+                    document.write("Last updated: " + mydate);
+                </script>
+                <br>
+                <a href="https://validator.w3.org/check?uri=referer">
+                    <img style="border:0;width:31px;height:31px" src="https://www.w3.org/html/logo/downloads/HTML5_Logo_64.png" alt="HTML5"></a>
+
+                <a href="https://jigsaw.w3.org/css-validator/check/referer">
+                    <img style="border:0;width:88px;height:31px"
+                         src="http://jigsaw.w3.org/css-validator/images/vcss"
+                         alt="Valid CSS!">
+                </a>
+            </p>
+
+
+        </footer>
+
+    </div>
+</section>
+</body>
