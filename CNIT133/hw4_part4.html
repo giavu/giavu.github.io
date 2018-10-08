@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang= "en-US">
+<head>
+    <meta charset = "UTF-8">
+    <title> CNIT 133 Homework 4 Part 4 </title>
+    <meta name = "description" content= "Gia Vu Profile">
+    <meta name ="viewport" content = "width= device-width, initial-scalable=1">
+    <meta name = "author" content = "Gia Vu">
+    <meta name = "keywords" content = "Javascript,CNIT 133,Homework 4 Part 4, website,HTML,CSS">
+
+    <link href="https://fonts.googleapis.com/css?family=Alegreya" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+
+    <style>
+        .num{
+            text-align:right;
+        }
+    </style>
+
+
+    <script>
+        /*  after initializing the plugin with validate(), call jQuery.addValidator.addClassRules()
+to define the rules for the num class  */
+        $(document).ready(function () {
+            $("#myForm").validate();
+
+            $.validator.addClassRules("num", {
+                required: true,
+                digits:true, // quantity sold must be a digit(integer) not a float
+                min: 0//quantities sold cannot smaller than 0
+            });
+        });
+            function process() {
+                if ($("#myForm").valid()) {
+                    // window.alert("Form is valid");
+                    var numSold = 0, amountReceived = 0, total = 0, price = 0;
+                    for(var product=1;product<=5;product++){
+                        numSold = parseInt(document.getElementById("quantity"+product).value,10);
+                        switch(product){
+                            case 1:
+                                price = 2.98;
+                                break;
+                            case 2:
+                                price = 4.50;
+                                break;
+                            case 3:
+                                price = 9.98;
+                                break;
+                            case 4:
+                                price = 4.49;
+                                break;
+                            case 5:
+                                price = 6.87;
+                                break;
+                        }
+                        amountReceived = price * numSold;
+                        //output Amount:
+                        document.getElementById("amount"+product).value = "$" + amountReceived.toFixed(2);
+
+                        //accumulate the Sum:
+                        total += amountReceived;
+                    }
+                    //outputs the final total outside of the for loop:
+                    document.getElementById("total").value = "$" + total.toFixed(2);
+                }
+            }
+
+    </script>
+
+        </head>
+<body>
+<section class="body">
+
+    <br>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+
+
+            <a class="navbar-brand" href="hw1.html">HW1</a>
+            <a class="navbar-brand" href="hw2.html">HW2</a>
+            <a class="navbar-brand" href="hw3.html">HW3</a>
+            <a class="navbar-brand" href="hw4.html">HW4</a>
+            <a class="navbar-brand" href="hw5.html">HW5</a>
+
+            <a class="navbar-brand" href="hw6.html">HW6</a>
+            <a class="navbar-brand" href="hw7.html">HW7</a>
+
+            <a class="navbar-brand" href="hw8.html">HW8</a>
+
+        </div>
+    </nav>
+
+    <form id="myForm" name="myForm">
+        <table style="width:60%; margin:auto" class="table table-bordered">
+            <tr class="head">
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity Sold</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td class="right">1</td>
+                <td class="right">$2.98</td>
+                <td class="right"><label for="quantity1"></label><input type="text" id="quantity1" name="quantity1" class="num"></td>
+                <td class="right"><label for="amount1"></label><input type="text" id="amount1" name="amount1" disabled="disabled"></td>
+            </tr>
+            <tr>
+                <td class="right">2</td>
+                <td class="right">$4.50</td>
+                <td class="right"><label for="quantity2"></label><input type="text" id="quantity2" name="quantity2" class="num"></td>
+                <td class="right"><label for="amount2"></label><input type="text" id="amount2" disabled="disabled"></td>
+            </tr>
+            <tr>
+                <td class="right">3</td>
+                <td class="right">$9.98</td>
+                <td class="right"><label for="quantity3"></label><input type="text" id="quantity3" name="quantity3" class="num"></td>
+                <td class="right"><label for="amount3"></label><input type="text" id="amount3" disabled></td>
+            </tr>
+            <tr>
+                <td class="right">4</td>
+                <td class="right">$4.49</td>
+                <td class="right"><label for="quantity4"></label><input type="text" id="quantity4" name="quantity4" class="num"></td>
+                <td class="right"><label for="amount4"></label><input type="text" id="amount4" disabled></td>
+            </tr>
+            <tr>
+                <td class="right">5</td>
+                <td class="right">$6.87</td>
+                <td class="right"><label for="quantity5"></label><input type="text" id="quantity5" name="quantity5" class="num"></td>
+                <td class="right"><label for="amount5"></label><input type="text" id="amount5" disabled></td>
+            </tr>
+            <tr>
+                <td  class="right" colspan="3">Total Amount Sold</td>
+                <td class="right"><label for="total"></label><input type="text" id="total" name="total" disabled></td>
+            </tr>
+            <tr class="center">
+                <td colspan="4" class="center">
+                    <input type="button" onclick="process()" value="Submit">
+                    <input type="reset" value="Reset" onclick="location.reload();">
+                </td>
+            </tr>
+
+        </table>
+    </form>
+
+
+
+    <footer>
+        <em>Update status, validation box is draggable.</em>
+        <p id="draggable_area">
+
+
+            <script type="text/javascript">
+                var dateModified = document.lastModified;
+                mydate = dateModified.slice(0,16);
+                document.write("Last updated: " + mydate);
+            </script>
+            <br>
+            <a href="https://validator.w3.org/check?uri=referer">
+                <img style="border:0;width:31px;height:31px" src="https://www.w3.org/html/logo/downloads/HTML5_Logo_64.png"
+                     alt="HTML5"></a>
+
+            <a href="https://jigsaw.w3.org/css-validator/check/referer">
+                <img style="border:0;width:88px;height:31px"
+                     src="http://jigsaw.w3.org/css-validator/images/vcss"
+                     alt="Valid CSS!">
+            </a>
+        </p>
+
+
+    </footer>
+
+
+</section>
+</body>
