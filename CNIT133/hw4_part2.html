@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang= "en-US">
+<head>
+    <meta charset = "UTF-8">
+    <title> CNIT 133 Homework 4 Part 2 </title>
+    <meta name = "description" content= "Gia Vu Profile">
+    <meta name ="viewport" content = "width= device-width, initial-scalable=1">
+    <meta name = "author" content = "Gia Vu">
+    <meta name = "keywords" content = "Javascript,CNIT 133,Homework 2 Part 4, website,HTML,CSS">
+
+    <link href="https://fonts.googleapis.com/css?family=Alegreya" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+ <style>
+     .num{
+         text-align:right;
+     }
+     th{
+         margin:auto;
+         padding: 10px;
+         border: 1px black solid;
+     }
+     td{
+         margin:auto;
+
+         border: 1px black solid;
+     }
+     tr {
+         background-color: #F5FFF4 !important;
+         margin: 1px;
+         border: 1px black solid;
+     }
+ </style>
+
+
+    <script>
+        /*  after initializing the plugin with validate(), call jQuery.addValidator.addClassRules()
+to define the rules for the num class  */
+        $(document).ready(function () {
+            $("#myForm").validate();
+
+            $.validator.addClassRules("num", {
+                required: true,
+                number: true,
+                min:0, //hours work or wage cannot be a negative number!!!
+            });
+        });
+
+
+        function process() {
+            //if numbers in the form is valid:
+            if ($("#myForm").valid()) {
+                var hours=0, rate=0;overtime_hours=0;
+                var grossPay=0;
+                for(var i=1; i<=6; i++) {
+                    // taking in inputs and perform calculations:
+                    hours = parseFloat(document.getElementById("hours" + i).value);
+                    //outputs hours to hours output field:
+                    document.getElementById("f_hours"+i).value = hours.toFixed(2);
+
+                    if (hours > 40) {
+                        overtime_hours = hours - 40;
+                        hours = 40;
+                    } else {
+                        overtime_hours = 0;
+                    }
+                    //get input rate:
+                    rate = parseFloat(document.getElementById("rate"+i).value);
+                    //output rate:
+                    document.getElementById("f_rate"+i).value = "$"+rate.toFixed(2);
+
+                    grossPay = hours * rate + overtime_hours * (rate * 1.5);
+                    //output gross Pay:
+                    document.getElementById("gross"+i).value = "$"+grossPay.toFixed(2);
+                }
+            }
+        }
+
+
+    </script>
+
+</head>
+<body>
+<section class="body" style="text-align:center;">
+
+    <br>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+
+
+            <a class="navbar-brand" href="hw1.html">HW1</a>
+            <a class="navbar-brand" href="hw2.html">HW2</a>
+            <a class="navbar-brand" href="hw3.html">HW3</a>
+            <a class="navbar-brand" href="hw4.html">HW4</a>
+            <a class="navbar-brand" href="hw5.html">HW5</a>
+
+            <a class="navbar-brand" href="hw6.html">HW6</a>
+            <a class="navbar-brand" href="hw7.html">HW7</a>
+
+            <a class="navbar-brand" href="hw8.html">HW8</a>
+
+        </div>
+    </nav>
+
+    <h3>Homework 4 - Part 2 Loop through input field.</h3>
+
+
+    <p>Input the number of hours worked and the hourly rate:</p>
+
+    <form id="myForm" name="myForm">
+
+        <table class="center">
+            <tr class="head"><th>Employee</th><th>Hours Worked</th><th>Hourly Rate</th></tr>
+            <tr><td><label for="hours1">Employee 1</label></td><td><input type="text" name="hours1" id="hours1" class="num"></td><td><label for="rate1"></label><input type="number" name="rate1" id="rate1" class="num"></td></tr>
+            <tr><td><label for="hours2">Employee 2</label></td><td><input type="text" name="hours2" id="hours2" class="num"></td><td><label for="rate2"></label><input type="number" name="rate2" id="rate2" class="num"></td></tr>
+            <tr><td><label for="hours3">Employee 3</label></td><td><input type="text" name="hours3" id="hours3" class="num"></td><td><label for="rate3"></label><input type="number" name="rate3" id="rate3" class="num"></td></tr>
+            <tr><td><label for="hours4">Employee 4</label></td><td><input type="text" name="hours4" id="hours4" class="num"></td><td><label for="rate4"></label><input type="number" name="rate4" id="rate4" class="num"></td></tr>
+            <tr><td><label for="hours5">Employee 5</label></td><td><input type="text" name="hours5" id="hours5" class="num"></td><td><label for="rate5"></label><input type="number" name="rate5" id="rate5" class="num"></td></tr>
+            <tr><td><label for="hours6">Employee 6</label></td><td><input type="text" name="hours6" id="hours6" class="num"></td><td><label for="rate6"></label><input type="number" name="rate6" id="rate6" class="num"></td></tr>
+
+        </table>
+
+        <br/>
+        <br/>
+
+        <div style="width:20%;margin:auto;">
+        <input type="button" value="Submit" onclick="process()">
+        <input type="reset"  value="Reset" onclick="window.location.reload();"> <br> <br>
+        </div>
+
+
+        <table class="center">
+
+            <tr class="head"><th>Employee</th><th>Hours worked</th><th>Hourly Rate</th><th>Gross Pay</th></tr>
+
+            <tr><td>1</td><td><input type="text" name="f_hours1" id="f_hours1" class="right" disabled></td><td><input type="text" name="f_rate1" id="f_rate1" class="right" disabled></td><td><input type="text" name="gross1" id="gross1" class="right" disabled></td>
+            <tr><td>2</td><td><input type="text" name="f_hours2" id="f_hours2" class="right" disabled></td><td><input type="text" name="f_rate2" id="f_rate2" class="right" disabled></td><td><input type="text" name="gross2" id="gross2" class="right" disabled></td>
+            <tr><td>3</td><td><input type="text" name="f_hours3" id="f_hours3" class="right" disabled></td><td><input type="text" name="f_rate3" id="f_rate3" class="right" disabled></td><td><input type="text" name="gross3" id="gross3" class="right" disabled></td>
+            <tr><td>4</td><td><input type="text" name="f_hours4" id="f_hours4" class="right" disabled></td><td><input type="text" name="f_rate4" id="f_rate4" class="right" disabled></td><td><input type="text" name="gross4" id="gross4" class="right" disabled></td>
+            <tr><td>5</td><td><input type="text" name="f_hours5" id="f_hours5" class="right" disabled></td><td><input type="text" name="f_rate5" id="f_rate5" class="right" disabled></td><td><input type="text" name="gross5" id="gross5" class="right" disabled></td>
+            <tr><td>6</td><td><input type="text" name="f_hours6" id="f_hours6" class="right" disabled></td><td><input type="text" name="f_rate6" id="f_rate6" class="right" disabled></td><td><input type="text" name="gross6" id="gross6" class="right" disabled></td>
+        </table>
+    </form>
+
+    <br>
+
+
+
+    <footer>
+        <p>
+
+
+            <script type="text/javascript">
+                var dateModified = document.lastModified;
+                mydate = dateModified.slice(0,16);
+                document.write("Last updated: " + mydate);
+            </script>
+            <br>
+            <a href="https://validator.w3.org/check?uri=referer">
+                <img style="border:0;width:31px;height:31px" src="https://www.w3.org/html/logo/downloads/HTML5_Logo_64.png"
+                     alt="HTML5"></a>
+
+            <a href="https://jigsaw.w3.org/css-validator/check/referer">
+                <img style="border:0;width:88px;height:31px"
+                     src="http://jigsaw.w3.org/css-validator/images/vcss"
+                     alt="Valid CSS!">
+            </a>
+        </p>
+
+
+    </footer>
+
+
+</section>
+</body>
